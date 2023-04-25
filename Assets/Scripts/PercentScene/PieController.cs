@@ -8,12 +8,18 @@ public class PieController : MonoBehaviour
   public Image[] pieImages;
   public float[] values;
 
+  void Start()
+  {
+    SetValue(values);
+  }
+
   public void SetValue(float[] valuesToSet)
   {
     float totalValues = 0;
     for (int i = 0; i < pieImages.Length; i++)
     {
-      totalValues += 0;
+      totalValues += FindPercentage(valuesToSet,i);
+      pieImages[i].fillAmount=totalValues;
     }
   }
 
@@ -24,6 +30,6 @@ public class PieController : MonoBehaviour
     {
       totalAmount += valuesToSet[i];
     }
-    return totalAmount;
+    return valuesToSet[index]/totalAmount;
   }
 }
